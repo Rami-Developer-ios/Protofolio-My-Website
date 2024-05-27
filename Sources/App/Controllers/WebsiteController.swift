@@ -11,10 +11,10 @@ import Leaf
 
 struct WebsiteController: RouteCollection {
     
-    let imageFolder = "img/portfolio"
+    let imageFolder = "ProfilePictures/"
     func boot(routes: RoutesBuilder) throws {
         
-        routes.get(use: { try await indexHandler(req: $0)})
+        routes.get(use: { try await IndexHomePage(req: $0)})
         routes.get("portfolioFFF",use: { try await IndexProfolio(req: $0)})
         routes.get("home",use: { try await IndexHomePage(req: $0)})
         routes.get("resume",use: { try await IndexResume(req: $0)})
@@ -41,11 +41,11 @@ struct WebsiteController: RouteCollection {
                   body: .collect(maxSize: "10mb"),
                   use:  {try await addProfilePicturePostHandler($0)})
         
-        routes.get(
-          "portfolio",
-          ":id",
-          "profilePicture",
-          use: {try await getUsersProfilePictureHandler($0)})
+////        routes.get(
+//          "portfolio",
+//          ":id",
+//          "profilePicture",
+//          use: {try await getUsersProfilePictureHandler($0)})
     }
     
     func indexHandler(req: Request) async throws -> View {
@@ -93,11 +93,15 @@ struct WebsiteController: RouteCollection {
 //        
 //        guard let protofolio = try await ProtofolioModel.find(req.parameters.get("id"), on: req.db) else{
 //            throw Abort(.notFound)
+//        }
+//        guard let user = try await ProtofolioModel.find(req.parameters.get("id"), on: req.db) else{
+//            throw Abort(.notFound)
+//        }
         
         let PersonalData = try await PersonModel.query(on: req.db).all()
-        let protofolio = try await ProtofolioModel.query(on: req.db).all()
+        let protofolio = try await ProtofolioModel.query(on: req.db).all().randomElement()
     
-        let context = IndexContext(title:"Rami Alaidy",personalData: PersonalData, protofolio: protofolio)
+        let context = Indexprotfolio(title:"Rami Alaidy",personInformation: PersonalData, protofolio:protofolio)
         
         return try await req.view.render("portfolio-details",context)
     }
@@ -177,7 +181,6 @@ struct ImageUploadData: Content {
 
 struct Indexprotfolio:Content{
     let title: String
-    let personInformation:PersonModel?
-
-  let protofolio: ProtofolioModel?
+    let personInformation:[PersonModel]?
+    let protofolio: ProtofolioModel?
 }
