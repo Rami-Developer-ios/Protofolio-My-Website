@@ -27,20 +27,20 @@ final class SkillsModel:Model ,@unchecked Sendable{
     @Field(key: "persentage")
     var persentage:String?
     
-//    @Field(key: "yearsExperianxe")
-//    var yearsExperianxe: String
-//    
+    @Field(key: "type")
+    var type: String
+//
 //    @Field(key: "projectNum")
 //    var projectNum: String
     
     init() {
         
     }
-    init(id: UUID? = nil, name: String?, persentage: String?) {
+    init(id: UUID? = nil, name: String?, persentage: String?,type:String) {
         self.id = id
         self.name = name
         self.persentage = persentage
-//        self.yearsExperianxe = yearsExperianxe
+        self.type = type
 //        self.projectNum = projectNum
     }
     

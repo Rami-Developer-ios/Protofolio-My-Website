@@ -19,6 +19,10 @@ func routes(_ app: Application) throws {
     
     try app.register(collection: SkillsController())
     
+    try app.register(collection: CoursesController())
+    
+    try app.register(collection: TestimonialsController())
+    
     let websiteController = WebsiteController()
     try app.register(collection: websiteController)
 }

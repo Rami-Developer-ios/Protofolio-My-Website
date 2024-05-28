@@ -53,17 +53,30 @@ struct WebsiteController: RouteCollection {
         
         let protofolio = try await ProtofolioModel.query(on: req.db).all()
         
-        let context = IndexContext(title:"Rami Alaidy",personalData: PersonalData, protofolio: protofolio)
+        let skills = try await SkillsModel.query(on: req.db).all()
+        
+        let Courses = try await CoursesModel.query(on: req.db).all()
+        
+        let Testimonials = try await TestimonialsModel.query(on: req.db).all()
+
+        let context = IndexContext(title:"Rami Alaidy",personalData: PersonalData, protofolio: protofolio,skills: skills,courses: Courses,testimonials: Testimonials)
         return try await req.view.render("index",  context)
         
     }
     
     func IndexHomePage(req:Request) async throws -> View{
+        
         let PersonalData = try await PersonModel.query(on: req.db).all()
         
         let protofolio = try await ProtofolioModel.query(on: req.db).all()
         
-        let context = IndexContext(title:"Rami Alaidy",personalData: PersonalData, protofolio: protofolio)
+        let skills = try await SkillsModel.query(on: req.db).all()
+        
+        let Courses = try await CoursesModel.query(on: req.db).all()
+        
+        let Testimonials = try await TestimonialsModel.query(on: req.db).all()
+        
+        let context = IndexContext(title:"Rami Alaidy",personalData: PersonalData, protofolio: protofolio,skills: skills,courses: Courses,testimonials: Testimonials)
         
         return try await req.view.render("homePage",context)
         
@@ -74,15 +87,26 @@ struct WebsiteController: RouteCollection {
         
         let protofolio = try await ProtofolioModel.query(on: req.db).all()
         
-        let context = IndexContext(title:"Rami Alaidy",personalData: PersonalData, protofolio: protofolio)
+        let skills = try await SkillsModel.query(on: req.db).all()
+        
+        let Courses = try await CoursesModel.query(on: req.db).all()
+        
+        let Testimonials = try await TestimonialsModel.query(on: req.db).all()
+        
+        let context = IndexContext(title:"Rami Alaidy",personalData: PersonalData, protofolio: protofolio,skills: skills,courses: Courses,testimonials: Testimonials)
         
         return try await req.view.render("resume",context)
     }
     func IndexPortfolio(req:Request) async throws -> View{
         let PersonalData = try await PersonModel.query(on: req.db).all()
         let protofolio = try await ProtofolioModel.query(on: req.db).all()
+        let skills = try await SkillsModel.query(on: req.db).all()
         
-        let context = IndexContext(title:"Rami Alaidy",personalData: PersonalData, protofolio: protofolio)
+        let Courses = try await CoursesModel.query(on: req.db).all()
+        
+        let Testimonials = try await TestimonialsModel.query(on: req.db).all()
+
+        let context = IndexContext(title:"Rami Alaidy",personalData: PersonalData, protofolio: protofolio,skills: skills,courses: Courses,testimonials: Testimonials)
         return try await req.view.render("home",context)
     }
     func IndexProfolio(req:Request) async throws -> View{
@@ -170,11 +194,15 @@ struct WebsiteController: RouteCollection {
 }
 
 struct IndexContext: Encodable {
+    
   let title: String
   let personalData: [PersonModel]?
   let protofolio: [ProtofolioModel]?
-//  let authenticatedUser: ProtofolioModel?
+  let skills: [SkillsModel]?
+  let courses:[CoursesModel]?
+  let testimonials: [TestimonialsModel]?
 }
+
 struct ImageUploadData: Content {
   var picture: Data
 }

@@ -18,12 +18,13 @@ struct SkillsController: RouteCollection {
             
             req.get(use: {try await getSkills(req: $0)})
             req.post(use: {try await addSkills(req: $0)})
+            req.put(":id",use: {try await update(req: $0)})
         }
-//        route.get(":userID", use:{ try await getHandler($0)})
-//        
-//        route.group(":todoID") { todo in
-//            todo.delete(use: { try await self.delete(req: $0) })
-//        }
+        route.get(":userID", use:{ try await getHandler($0)})
+        
+        route.group(":todoID") { todo in
+            todo.delete(use: { try await self.delete(req: $0) })
+        }
     }
     
     func getSkills(req:Request) async throws -> [SkillsModel] {
@@ -47,6 +48,22 @@ struct SkillsController: RouteCollection {
             throw Abort(.notFound)
         }
         return user
+    }
+    
+    func update(req:Request) async throws -> SkillsModel{
+        
+        guard let infoByID = try await SkillsModel.find(req.parameters.get("id"), on: req.db) else{
+            throw Abort(.notFound)
+        }
+        
+        let updatedTodo = try req.content.decode(SkillsModel.self)
+        
+        infoByID.name = updatedTodo.name
+        infoByID.persentage = updatedTodo.persentage
+        infoByID.type = updatedTodo.type
+        try await infoByID.save(on: req.db)
+        
+        return infoByID
     }
     
     func delete(req: Request) async throws -> HTTPStatus {
