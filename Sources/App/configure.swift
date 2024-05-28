@@ -50,6 +50,10 @@ public func configure(_ app: Application) async throws {
     
     app.migrations.add(CreateSkills())
  
+    app.migrations.add(CreateCourses())
+    
+    app.migrations.add(CreateTestimonials())
+    
     app.logger.logLevel = .debug
 
  

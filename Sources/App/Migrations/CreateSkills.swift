@@ -18,6 +18,7 @@ struct CreateSkills: AsyncMigration{
             .id()
             .field("name",.string)
             .field("persentage",.string)
+            .field("type",.string,.required)
             .create()
     }
     
