@@ -37,7 +37,7 @@ public func configure(_ app: Application) async throws {
             port: Environment.get("DATABASE_PORT").flatMap(Int.init(_:)) ?? SQLPostgresConfiguration.ianaPortNumber,
             username: Environment.get("DATABASE_USERNAME") ?? "postgres",
             password: Environment.get("DATABASE_PASSWORD") ?? "r315r199r",
-            database: Environment.get("DATABASE_NAME") ?? "Protofolio",
+            database: Environment.get("DATABASE_NAME") ?? "postgres-portofolio",
             tls: .prefer(try .init(configuration: .clientDefault)))
         ), as: .psql)
     }
@@ -48,7 +48,12 @@ public func configure(_ app: Application) async throws {
     
     app.migrations.add(CreateProtofolio())
     
+    app.migrations.add(CreateSkills())
  
+    app.migrations.add(CreateCourses())
+    
+    app.migrations.add(CreateTestimonials())
+    
     app.logger.logLevel = .debug
 
  
