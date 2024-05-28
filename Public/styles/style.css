@@ -88,17 +88,47 @@ h6 {
 }
 
 #header h2 {
-  font-size: 24px;
+  font-size: 36px;
+  margin-top: 28px;
+  color: #18d26e;
+}
+#header h4 {
+  font-size: 36px;
+  margin-top: 28px;
+  color: #18d26e;
+}
+#header h4 {
+  font-size: 28px;
   margin-top: 20px;
+  margin-left: 44px;
+  color: rgba(255, 255, 255, 0.8);
+}
+#header h6 {
+  font-size: 44px;
+  margin-bottom: 44px;
   color: rgba(255, 255, 255, 0.8);
 }
 
 #header h2 span {
-  color: #fff;
-  border-bottom: 2px solid #18d26e;
+  font-size-adjust:36px;
+  color: #18d26e;
+  border-bottom: 2px;
   padding-bottom: 6px;
+  color: #18d26e;
 }
-
+#header h4 span {
+  font-size-adjust:36px;
+  color: #18d26e;
+  border-bottom: 2px;
+  padding-bottom: 6px;
+  color: #18d26e;
+}
+/*#header h4 span{*/
+/*    font-size-adjust:64px;*/
+/*    color: #fff;*/
+/*    border-bottom: 2px solid #18d26e;*/
+/*    padding-bottom: 6px;*/
+/*}*/
 #header img {
   padding: 0;
   margin: 0;
@@ -162,7 +192,12 @@ h6 {
 #header.header-top h2 {
   display: none;
 }
-
+#header.header-top h6 {
+  display: none;
+}
+#header.header-top h4 {
+  display: none;
+}
 #header.header-top h1 {
   margin-right: auto;
   font-size: 36px;
@@ -196,7 +231,7 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /**
-* Desktop Navigation 
+* Desktop Navigation
 */
 .navbar {
   padding: 0;
@@ -268,7 +303,7 @@ h6 {
 }
 
 /**
-* Mobile Navigation 
+* Mobile Navigation
 */
 .mobile-nav-toggle {
   color: #fff;
@@ -495,9 +530,9 @@ section .container {
 .skills .progress .skill {
   padding: 10px 0;
   margin: 0;
-  text-transform: uppercase;
+  text-transform: default;
   display: block;
-  font-weight: 600;
+  font-weight: 700;
   font-family: "Poppins", sans-serif;
   color: #fff;
 }
@@ -513,7 +548,7 @@ section .container {
 
 .skills .progress-bar {
   width: 1px;
-  height: 10px;
+  height: 5px;
   transition: 0.9s;
   background-color: #18d26e;
 }
@@ -578,7 +613,7 @@ section .container {
 }
 
 .testimonials .testimonial-item h4 {
-  font-size: 14px;
+  font-size: 36px;
   color: #999;
   margin: 0 0 0 45px;
 }

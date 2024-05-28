@@ -17,6 +17,8 @@ func routes(_ app: Application) throws {
     
     try app.register(collection: ProtofolioController())
     
+    try app.register(collection: SkillsController())
+    
     let websiteController = WebsiteController()
     try app.register(collection: websiteController)
 }
