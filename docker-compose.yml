@@ -21,10 +21,10 @@ volumes:
 
 x-shared_environment: &shared_environment
   LOG_LEVEL: ${LOG_LEVEL:-debug}
-  DATABASE_HOST: db
-  DATABASE_NAME: vapor_database
-  DATABASE_USERNAME: vapor_username
-  DATABASE_PASSWORD: vapor_password
+  DATABASE_HOST: localhost
+  DATABASE_NAME: portofolio-db
+  DATABASE_USERNAME: postgres
+  DATABASE_PASSWORD: R315r199r
   
 services:
   app:
@@ -66,9 +66,9 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data/pgdata
     environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: r315r199r
-      POSTGRES_DB: postgres-portofolio
+          PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: vapor_username
+      POSTGRES_PASSWORD: vapor_password
+      POSTGRES_DB: vapor_database
     ports:
       - '5432:5432'
